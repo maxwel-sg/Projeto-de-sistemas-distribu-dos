@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplicativo de Apoio ao Motoboy</title>
+  </head>
+  <body>
+    <h1>🏍️ Aplicativo de Apoio ao Motoboy</h1>
+
+    <h2>Cadastrar novo pedido</h2>
+
+    <form id="formPedido">
+      <label for="numero">Número do pedido:</label>
+      <input type="text" id="numero" required />
+      <br /><br />
+
+      <label for="restaurante">Estabelecimento:</label>
+      <input type="text" id="restaurante" required />
+      <br /><br />
+
+      <label for="cliente">Nome do cliente:</label>
+      <input type="text" id="cliente" required />
+      <br /><br />
+
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" />
+      <br /><br />
+
+      <label for="endereco">Endereço de entrega:</label>
+      <input type="text" id="endereco" required />
+      <br /><br />
+
+      <label for="itens">Itens do pedido:</label>
+      <textarea id="itens" required></textarea>
+      <br /><br />
+
+      <label for="pagamento">Forma de pagamento:</label>
+      <select id="pagamento">
+        <option value="PIX">PIX</option>
+        <option value="Dinheiro">Dinheiro</option>
+        <option value="Cartão">Cartão</option>
+      </select>
+      <br /><br />
+
+      <button type="submit">Cadastrar pedido</button>
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>
