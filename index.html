@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <style>
+      #mapa {
+        height: 350px;
+        width: 100%;
+        margin-top: 15px;
+        border-radius: 10px;
+      }
+    </style>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aplicativo de Apoio ao Motoboy</title>
@@ -45,6 +59,13 @@
 
       <button type="submit">Cadastrar pedido</button>
     </form>
+
+    <h2>📍 Mapa de entrega</h2>
+    <p>Localização do destino do pedido selecionado.</p>
+
+    <div id="mapa"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script src="script.js"></script>
   </body>

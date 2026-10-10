@@ -118,3 +118,54 @@ function mostrarPedidos() {
 }
 
 mostrarPedidos();
+
+setInterval(() => {
+  const pedidos = JSON.parse(localStorage.getItem("pedidos") || "[]");
+
+  const emEntrega = pedidos.some(
+    (pedido) => pedido.inicioEntrega && !pedido.fimEntrega,
+  );
+
+  if (emEntrega) {
+    mostrarPedidos();
+  }
+}, 1000);
+
+const mapa = L.map("mapa").setView([-2.443, -54.708], 13);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: "&copy; OpenStreetMap contributors",
+}).addTo(mapa);
+
+let marcador;
+
+async function localizarEndereco(endereco) {
+  const url =
+    "https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" +
+    encodeURIComponent(endereco + ", Santarém, Pará, Brasil");
+
+  try {
+    const resposta = await fetch(url);
+    const locais = await resposta.json();
+
+    if (locais.length > 0) {
+      const latitude = Number(locais[0].lat);
+      const longitude = Number(locais[0].lon);
+
+      mapa.setView([latitude, longitude], 16);
+
+      if (marcador) {
+        mapa.removeLayer(marcador);
+      }
+
+      marcador = L.marker([latitude, longitude])
+        .addTo(mapa)
+        .bindPopup("Destino da entrega")
+        .openPopup();
+    } else {
+      alert("Endereço não encontrado. Tente informar rua e bairro.");
+    }
+  } catch (erro) {
+    alert("Não foi possível localizar o endereço. Verifique a conexão.");
+  }
+}
